@@ -88,9 +88,7 @@
 	cursor: crosshair;
 }
 
-.upload_form{
-	display:none;
-}
+
 
 .noselect {
   -webkit-touch-callout: none; /* iOS Safari */

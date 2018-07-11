@@ -1,3 +1,51 @@
+<?php
+
+	error_reporting(E_ALL);
+	ini_set('display_errors', TRUE);
+	ini_set('display_startup_errors', TRUE);
+	
+	if (isset($_POST['submit'])) {
+
+		$currentDir = getcwd();
+	    $uploadDirectory = "/geojson/";
+
+	    $errors = []; // Store all foreseen and unforseen errors here
+
+	    $fileExtensions = ['geojson']; // Get all the file extensions
+
+	    $fileName = $_FILES['jsonupload']['name'];
+	    $fileSize = $_FILES['jsonupload']['size'];
+	    $fileTmpName  = $_FILES['jsonupload']['tmp_name'];
+	    $fileType = $_FILES['jsonupload']['type'];
+	    $fileExtension = strtolower(end(explode('.',$fileName)));
+
+	    $uploadPath = $currentDir . $uploadDirectory . basename($fileName); 
+
+        if (! in_array($fileExtension,$fileExtensions)) {
+            $errors[] = "This file extension is not allowed. Geojson only";
+        }
+
+        if ($fileSize > 2000000) {
+            $errors[] = "This file is more than 2MB. Less!";
+        }
+
+        if (empty($errors)) {
+            $didUpload = move_uploaded_file($fileTmpName, $uploadPath);
+
+            if ($didUpload) {
+                echo "The file " . basename($fileName) . " has been uploaded";
+            } else {
+                echo "An error occurred somewhere. Try again or contact the admin";
+            }
+        } else {
+            foreach ($errors as $error) {
+                echo $error . "These are the errors" . "\n";
+            }
+        }
+    }
+
+?>
+
 <!doctype html>
 
 <html lang="en">
@@ -44,8 +92,8 @@
 				<button class='btn draw_rect_btn'>Select Box</button>
 				<button class='btn upload_btn'>Upload Geojson File</button>
 
-				<form class='upload_form' enctype="multipart/form-data" action="" method="POST">
-					<input class='choose_file' type="file" name="file" id="file">
+				<form id='upload_form' class='upload_form' enctype="multipart/form-data" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+					<input class='choose_file' type="file" name="jsonupload" id="fileupload">
 					<input class='submit_file' class="upload-video-form-input" type="hidden" name="form_submitted" value="yes" />
 					<input type="submit" value="submit" />
 				</form>

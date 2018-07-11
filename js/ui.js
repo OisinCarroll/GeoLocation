@@ -4,6 +4,7 @@ function UI(map){
 	this.change_color_btn_state = false;
 	this.draw_rect_btn_state = false;
 	this.editableLayers;
+	this.selectedMarkerData = [];
 
 	this.initButtons = function(){
 		initChangeColorButton();
@@ -13,7 +14,7 @@ function UI(map){
 
 	function removeColorPalette(){
 		$('.palette').css('display', 'none');
-		$('.msg-box').html().css();
+		$('.msg-box').html("").css('opacity', 0);
 		$('.leaflet-marker-pane img').removeClass('marker-selected').off();
 		this.change_color_btn_state = false;
 	}
@@ -24,11 +25,11 @@ function UI(map){
 
 	    var inside = false;
 	    for (var i = 0, j = rectPoints.length - 1; i < rectPoints.length; j = i++) {
-	        var xi = rectPoints[i].lat, yi = rectPoints[i].lng;
-	        var xj = rectPoints[j].lat, yj = rectPoints[j].lng;
+	        var x1 = rectPoints[i].lat, y1 = rectPoints[i].lng;
+	        var x2 = rectPoints[j].lat, y2 = rectPoints[j].lng;
 
-	        var intersect = ((yi > y) != (yj > y))
-	            && (x < (xj - xi) * (y - yi) / (yj - yi) + xi);
+	        var intersect = ((y1 > y) != (y2 > y))
+	            && (x < (x2 - x1) * (y - y1) / (y2 - y1) + 1);
 	        if (intersect) inside = !inside;
 	    }
 
@@ -55,7 +56,7 @@ function UI(map){
 				markerData.push(item.properties);
 			}
 		});
-		console.log(markerData);
+		this.selectedMarkerData = markerData;
 
 	}
 
@@ -100,6 +101,7 @@ function UI(map){
 		//class variable closure test
 
 		$('.draw_rect_btn').on('click', function(){
+			removeColorPalette();
 			if(!this.draw_rect_btn_state){ //very similar to above, could combine events
 				map.dragging.disable();
 
@@ -139,7 +141,13 @@ function UI(map){
 
 	function initUploadButton(){
 
-		
+		$('.upload_btn').on('click', function(){
+			$('.choose_file').trigger('click');
+		});
+		$(".choose_file").change(function (){
+	       var fileName = $(this).val();
+	       $('#upload_form').submit();
+	    });
 
 	}
 }

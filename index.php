@@ -7,7 +7,7 @@
 	if (isset($_POST['submit'])) {
 
 		$currentDir = getcwd();
-	    $uploadDirectory = "/geojson/";
+	    $uploadDirectory = "geojson/";
 
 	    $errors = []; // Store all foreseen and unforseen errors here
 

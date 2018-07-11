@@ -1,0 +1,104 @@
+.container{
+	width: 1000px;
+	display: block;
+	margin: 0px auto;
+}
+
+#map {
+	height: 600px;
+	width: 100%;
+	border: solid 1px black;
+}
+
+.btn{
+	display: block;
+    margin: 15px 0px;
+    border: solid 1px #ccc;
+    padding: 5px 15px;
+    border-radius: 3px;
+}
+
+.btn:hover{
+	border-color: #989898;
+	cursor: pointer;
+}
+
+.palette{
+	width: 165px;
+    height: 40px;
+    border: solid 1px black;
+    background-color: white;
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    z-index: 5000;
+    display: none;
+}
+
+.palette:hover{
+	cursor:default;
+}
+
+.tile{
+	width: 30px;
+	height: 30px;
+	margin: 5px;
+	float: left;
+	z-index: 5001;
+}
+
+.msg-box{
+	position: absolute;
+    display: block;
+    width: 100%;
+    top: 529px;
+    text-align: left;
+    z-index: 5000;
+    font-size: 21px;
+    background-color: white;
+    padding: 3px;
+    padding-left: 28px;
+    opacity: 0;
+
+}
+
+.tile:hover{
+	cursor: default;
+	opacity: 0.7;
+}
+
+#blue{
+	background-color: #5796cf;
+}
+#red{
+	background-color: #d94e59;
+}
+#green{
+	background-color: #58ac45;
+}
+#yellow{
+	background-color: #f2a400;
+}
+
+.marker-selected {
+	-webkit-filter: drop-shadow(-1px 0px 0 black) drop-shadow(1px 0px 0 black);
+}
+
+.selection-cursor{
+	cursor: crosshair;
+}
+
+.upload_form{
+	display:none;
+}
+
+.noselect {
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome and Opera */
+}
+

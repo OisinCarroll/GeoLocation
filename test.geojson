@@ -1,0 +1,89 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "MARKer Wahlberg",
+        "status" : "stuff"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -6.2958526611328125,
+          53.326977235952725
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "MARKer Zuckerberg",
+        "status" : "stuff"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -6.2642669677734375,
+          53.331898120486706
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "MARKer Hamill",
+        "status" : "stuff"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -6.313362121582031,
+          53.353215394910215
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "MARKer Rufallo",
+        "status" : "stuff"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -6.274909973144531,
+          53.359362628336044
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "MARKer Ronson",
+        "status" : "stuff"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -6.237831115722656,
+          53.350756253273524
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Geopal!",
+        "status": "Mapping"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -6.264433264732361,
+          53.3452963236555
+        ]
+      }
+    }
+  ]
+}

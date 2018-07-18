@@ -88,6 +88,9 @@
 	cursor: crosshair;
 }
 
+#upload_form{
+	display: none;
+}
 
 
 .noselect {
@@ -99,4 +102,5 @@
             user-select: none; /* Non-prefixed version, currently
                                   supported by Chrome and Opera */
 }
+
 

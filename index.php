@@ -3,30 +3,42 @@
 	error_reporting(E_ALL);
 	ini_set('display_errors', TRUE);
 	ini_set('display_startup_errors', TRUE);
+
+	$gupload = false;
 	
-	if (isset($_POST['submit'])) {
+	if (
+		$_SERVER['REQUEST_METHOD'] == 'POST' &&
+		file_exists($_FILES['jsonupload']['tmp_name']) &&
+		is_uploaded_file($_FILES['jsonupload']['tmp_name']) 
+		) {
 
 		$currentDir = getcwd();
-	    $uploadDirectory = "geojson/";
+	    $uploadDirectory = "geojson";
 
-	    $errors = []; // Store all foreseen and unforseen errors here
+	    $errors = [];
 
-	    $fileExtensions = ['geojson']; // Get all the file extensions
+	    $fileExtensions = ['geojson']; 
 
 	    $fileName = $_FILES['jsonupload']['name'];
 	    $fileSize = $_FILES['jsonupload']['size'];
 	    $fileTmpName  = $_FILES['jsonupload']['tmp_name'];
 	    $fileType = $_FILES['jsonupload']['type'];
-	    $fileExtension = strtolower(end(explode('.',$fileName)));
+	    $fileExtension = strtolower(explode('.',$fileName)[1]);
 
-	    $uploadPath = $currentDir . $uploadDirectory . basename($fileName); 
+	    $uploadPath = $currentDir . '\\' . $uploadDirectory . '\\' . basename("new.geojson");
+
+	    echo "fileName: " . $fileName . "<br>";
+	    echo "fileSize: " . $fileSize . "<br>";
+	    echo "fileTmpName: " . $fileTmpName . "<br>";
+	    echo "fileType: " . $fileType . "<br>";
+	    echo "fileExtension: " . $fileExtension . "<br>";
 
         if (! in_array($fileExtension,$fileExtensions)) {
             $errors[] = "This file extension is not allowed. Geojson only";
         }
 
         if ($fileSize > 2000000) {
-            $errors[] = "This file is more than 2MB. Less!";
+            $errors[] = "This file is more than 2MB.";
         }
 
         if (empty($errors)) {
@@ -34,8 +46,9 @@
 
             if ($didUpload) {
                 echo "The file " . basename($fileName) . " has been uploaded";
+                $gupload = true;
             } else {
-                echo "An error occurred somewhere. Try again or contact the admin";
+                echo "An error occurred somewhere.";
             }
         } else {
             foreach ($errors as $error) {
@@ -51,6 +64,8 @@
 <html lang="en">
 
 	<head>
+
+		<script type='text/javascript'>window.gupload = '<?=$gupload?>';</script>
 
 		<meta charset="utf-8">
 

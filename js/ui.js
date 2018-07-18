@@ -19,7 +19,7 @@ function UI(map){
 		this.change_color_btn_state = false;
 	}
 	
-	function isMarkerInsidePolygon(marker, rect) {
+	function isMarkerInsideRect(marker, rect) {
 	    var rectPoints = rect.getLatLngs()[0];       
 	    var x = marker.geometry.coordinates[0], y = marker.geometry.coordinates[1];
 
@@ -52,7 +52,7 @@ function UI(map){
 		var markerData = [];
 		var markers = getMarkersFromLayer(map);
 		$.each(markers, function(index, item){
-			if(isMarkerInsidePolygon(item, rect)){
+			if(isMarkerInsideRect(item, rect)){
 				markerData.push(item.properties);
 			}
 		});

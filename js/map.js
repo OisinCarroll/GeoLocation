@@ -12,7 +12,7 @@ class Map {
 
 	init(){
 
-		//preload icon crap
+		//preload icon
 		var imgroot = "lib/leaflet/images/marker-icon-";
 		$([imgroot+'red.png',imgroot+'green.png',imgroot+'blue.png', imgroot+'yellow.png']).preload();
 
@@ -31,8 +31,16 @@ class Map {
 
 		this.mainlayer.addTo(this.map);
 
+		//check if a file was uploaded
+
+		var geoFile = 'test.geojson';
+
+		if(window.gupload == "1" || window.gupload == 1){
+			geoFile = 'geojson/new.geojson';
+		}
+
 		//geojson file
-		this.geojsonLayer = new L.geoJSON.ajax("test.geojson", 
+		this.geojsonLayer = new L.geoJSON.ajax(geoFile, 
 			{
 				onEachFeature : function(feature, layer){
 					var str = '';
